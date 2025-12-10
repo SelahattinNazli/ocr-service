@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  ocr-service:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_API_URL=http://host.docker.internal:11434
+      - OLLAMA_MODEL=gemma3:4b
+      - UPLOAD_DIR=/app/uploads
+      - DEBUG=False
+    volumes:
+      - ./app/uploads:/app/uploads
+    env_file:
+      - .env
